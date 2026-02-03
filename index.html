@@ -5,234 +5,200 @@
 <title>For My Sweety 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  min-height: 100vh;
-  text-align: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+  text-align:center;
+  color:#b3005e;
 }
 
-/* floating photos */
-.floating-photos {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
+/* floating decorations */
+.floating{
+  position:fixed;
+  animation:float linear infinite;
+  opacity:.8;
+}
+@keyframes float{
+  from{transform:translateY(110vh);}
+  to{transform:translateY(-20vh);}
 }
 
-.float-img {
-  position: absolute;
-  width: 110px;
-  border-radius: 14px;
-  border: 4px solid white;
-  box-shadow: 0 15px 40px rgba(0,0,0,.25);
-  opacity: .75;
-  animation: float 20s linear infinite;
+/* hearts */
+.heart{font-size:26px;}
+
+/* stars */
+.star{font-size:18px;color:white;opacity:.7}
+
+/* balloons */
+.balloon{font-size:34px}
+
+/* photos */
+.bg-photo{
+  position:fixed;
+  width:180px;
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.3);
+  animation:float 22s linear infinite;
 }
 
-.float-img:nth-child(1){top:8%;left:6%}
-.float-img:nth-child(2){top:30%;right:8%;animation-duration:25s}
-.float-img:nth-child(3){bottom:20%;left:10%;animation-duration:22s}
-.float-img:nth-child(4){bottom:28%;right:12%;animation-duration:26s}
-.float-img:nth-child(5){top:55%;left:42%;animation-duration:28s}
-.float-img:nth-child(6){bottom:45%;right:40%;animation-duration:30s}
-
-@keyframes float {
-  from {transform:translateY(0)}
-  to {transform:translateY(-80px)}
-}
-
-/* decorations */
-.decor {
-  position: fixed;
-  font-size: 40px;
-  animation: decor 10s ease-in-out infinite;
-  z-index: 0;
-}
-
-.decor1{top:5%;right:18%}
-.decor2{bottom:10%;left:12%}
-.decor3{top:60%;right:10%}
-.decor4{bottom:45%;left:50%}
-
-@keyframes decor {
-  50% {transform:translateY(-30px)}
-}
-
-/* container */
-.container {
-  position: relative;
-  z-index: 2;
-  padding: 90px 20px;
-}
-
-h1 {
-  font-family: 'Pacifico', cursive;
-  color: #b30059;
-  font-size: 34px;
-}
-
-/* envelope */
-.envelope {
-  width: 180px;
-  height: 120px;
-  background: #ff4d6d;
-  margin: 40px auto;
-  border-radius: 10px;
-  position: relative;
-  cursor: pointer;
-}
-
-.envelope::before {
-  content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#ff758f;
-  clip-path: polygon(0 0,100% 0,50% 55%);
-}
-
-.buttons {
-  margin-top: 30px;
-}
-
-button {
-  padding: 12px 28px;
-  font-size: 18px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-}
-
-#yesBtn {
-  background:#ff4d6d;
-  color:#fff;
-}
-
-#noBtn {
-  background:#fff;
-  color:#ff4d6d;
-  margin-left:15px;
+/* center content */
+.center{
   position:relative;
+  z-index:5;
+  margin-top:80px;
 }
 
-/* gift grid */
-.gifts {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-  max-width:320px;
-  margin:40px auto;
+h1{
+  font-size:36px;
+  margin-bottom:10px;
 }
 
-.gift {
-  background:#fff;
-  padding:30px;
-  border-radius:16px;
-  font-size:32px;
+.envelope{
+  width:160px;
+  margin:30px auto;
   cursor:pointer;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  transition:.5s;
+}
+.envelope.open{
+  transform:rotateX(180deg);
 }
 
-.gift img {
-  width:100%;
-  border-radius:12px;
+/* letter */
+.letter{
   display:none;
+  background:white;
+  width:300px;
+  margin:20px auto;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  animation:slideUp .8s ease;
+}
+@keyframes slideUp{
+  from{transform:translateY(80px);opacity:0}
+  to{transform:translateY(0);opacity:1}
 }
 
-/* yes screen */
-#yesScreen {
-  display:none;
-}
-
-.kiss-photo {
-  width:260px;
-  border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,.4);
+/* buttons */
+.buttons{
   margin-top:20px;
+}
+button{
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+}
+#yes{
+  background:#ff4f8b;
+  color:white;
+}
+#no{
+  position:absolute;
+  background:white;
+  color:#ff4f8b;
+  border:2px solid #ff4f8b;
+}
+
+/* kiss image */
+#kiss{
+  display:none;
+  width:260px;
+  margin:20px auto;
+  border-radius:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);
 }
 </style>
 </head>
 
 <body>
 
-<!-- floating memories -->
-<div class="floating-photos">
-  <img src="bg1.jpg" class="float-img">
-  <img src="bg2.jpg" class="float-img">
-  <img src="bg3.jpg" class="float-img">
-  <img src="bg4.jpg" class="float-img">
-  <img src="bg5.jpg" class="float-img">
-  <img src="bg6.jpg" class="float-img">
-</div>
-
-<!-- decor -->
-<div class="decor decor1">🎈</div>
-<div class="decor decor2">🎂</div>
-<div class="decor decor3">💖</div>
-<div class="decor decor4">🎉</div>
-
-<audio id="bgMusic" loop>
-  <source src="love.mp3">
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="love.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container" id="mainScreen">
+<!-- FLOATING DECORATIONS -->
+<script>
+for(let i=0;i<35;i++){
+  let h=document.createElement("div");
+  h.className="floating heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=10+Math.random()*10+"s";
+  document.body.appendChild(h);
+}
+for(let i=0;i<25;i++){
+  let b=document.createElement("div");
+  b.className="floating balloon";
+  b.innerHTML="🎈";
+  b.style.left=Math.random()*100+"vw";
+  b.style.animationDuration=14+Math.random()*12+"s";
+  document.body.appendChild(b);
+}
+for(let i=0;i<30;i++){
+  let s=document.createElement("div");
+  s.className="floating star";
+  s.innerHTML="✨";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=8+Math.random()*8+"s";
+  document.body.appendChild(s);
+}
+</script>
+
+<!-- BACKGROUND PHOTOS -->
+<img src="bg1.jpg" class="bg-photo" style="top:10%;left:5%">
+<img src="bg2.jpg" class="bg-photo" style="top:55%;left:8%">
+<img src="bg3.jpg" class="bg-photo" style="top:20%;right:6%">
+<img src="bg4.jpg" class="bg-photo" style="top:60%;right:8%">
+<img src="bg5.jpg" class="bg-photo" style="top:35%;left:40%">
+
+<div class="center">
   <h1>A Secret Note For You 💌</h1>
   <p>Tap the envelope</p>
 
-  <div class="envelope" onclick="openEnvelope()"></div>
+  <img src="envelope.png" class="envelope" id="env">
 
-  <div class="buttons" style="display:none" id="question">
-    <h1>Sweety 😊<br>Will you be my Valentine?</h1>
-    <button id="yesBtn">YES 💘</button>
-    <button id="noBtn">NO 🙈</button>
+  <div class="letter" id="letter">
+    <h2>Sweety 😊</h2>
+    <p>
+      From smiles to memories, from fights to hugs…  
+      I choose you every single day 💕
+    </p>
+    <h3>Will you be my Valentine? 💖</h3>
   </div>
-</div>
 
-<div class="container" id="yesScreen">
-  <h1>Good choice babu 🥰</h1>
-  <p>Unlimited hugs, kisses & cuddles unlocked 💞</p>
-  <img src="kiss.jpg" class="kiss-photo">
-  <h2>Now you're stuck with me forever ♾️</h2>
+  <img src="kiss.jpg" id="kiss">
 
-  <div class="gifts">
-    <div class="gift" onclick="reveal(this,'bg1.jpg')">🎁</div>
-    <div class="gift" onclick="reveal(this,'bg2.jpg')">🎁</div>
-    <div class="gift" onclick="reveal(this,'bg3.jpg')">🎁</div>
-    <div class="gift" onclick="reveal(this,'bg4.jpg')">🎁</div>
+  <div class="buttons">
+    <button id="yes">YES 💞</button>
+    <button id="no">NO 🙈</button>
   </div>
 </div>
 
 <script>
-const music = document.getElementById("bgMusic");
-const noBtn = document.getElementById("noBtn");
+const env=document.getElementById("env");
+const letter=document.getElementById("letter");
+const kiss=document.getElementById("kiss");
+const no=document.getElementById("no");
 
-function openEnvelope(){
-  document.getElementById("question").style.display="block";
-  music.play();
-}
+env.onclick=()=>{
+  env.classList.add("open");
+  letter.style.display="block";
+};
 
-document.getElementById("yesBtn").onclick=()=>{
-  document.getElementById("mainScreen").style.display="none";
-  document.getElementById("yesScreen").style.display="block";
-}
+document.getElementById("yes").onclick=()=>{
+  kiss.style.display="block";
+};
 
-noBtn.addEventListener("mouseover",()=>{
-  noBtn.style.left=Math.random()*(window.innerWidth-120)+"px";
-  noBtn.style.top=Math.random()*(window.innerHeight-50)+"px";
-});
-
-function reveal(el,src){
-  el.innerHTML=`<img src="${src}">`;
-  el.querySelector("img").style.display="block";
-}
+no.onmouseover=()=>{
+  no.style.left=Math.random()*80+"vw";
+  no.style.top=Math.random()*80+"vh";
+};
 </script>
 
 </body>
