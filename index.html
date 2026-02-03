@@ -17,7 +17,7 @@ html,body{
   scroll-behavior:smooth;
 }
 
-/* SECTION */
+/* SECTIONS */
 section{
   min-height:100vh;
   padding:40px 16px;
@@ -33,26 +33,23 @@ section{
 h1{color:#c2185b;font-size:2.2rem}
 h2{color:#d81b60}
 
-/* BACKGROUND PHOTOS */
-.bg-wrap{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
+/* PHOTO GRID (NO OVERLAP) */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  width:100%;
+  max-width:420px;
+  margin:20px auto;
   z-index:1;
 }
 
-.bg-photo{
-  position:absolute;
-  width:120px;
-  max-width:35vw;
+.photo-grid img{
+  width:100%;
   border-radius:18px;
   padding:6px;
   background:white;
   box-shadow:0 12px 25px rgba(0,0,0,.25);
-}
-
-@media (min-width:768px){
-  .bg-photo{width:160px}
 }
 
 /* ENVELOPE */
@@ -63,7 +60,8 @@ h2{color:#d81b60}
   border-radius:14px;
   position:relative;
   cursor:pointer;
-  margin:20px auto;
+  margin:24px auto;
+  z-index:3;
 }
 
 .envelope::before{
@@ -90,6 +88,7 @@ h2{color:#d81b60}
   max-width:420px;
   box-shadow:0 25px 45px rgba(0,0,0,.3);
   animation:pop .5s ease;
+  z-index:3;
 }
 
 @keyframes pop{
@@ -126,14 +125,14 @@ button{
   border-radius:20px;
 }
 
-/* FLOATING EMOJI RAIN */
+/* FLOATING EMOJIS */
 .fall{
   position:fixed;
   top:-20px;
   font-size:18px;
   animation:fall linear infinite;
-  z-index:0;
   pointer-events:none;
+  z-index:0;
 }
 
 @keyframes fall{
@@ -157,12 +156,12 @@ button{
 <!-- PAGE 2 -->
 <section>
 
-  <!-- BACKGROUND PHOTOS -->
-  <div class="bg-wrap">
-    <img src="bg1.jpg" class="bg-photo" style="top:6%;left:6%">
-    <img src="bg2.jpg" class="bg-photo" style="top:6%;right:6%">
-    <img src="bg3.jpg" class="bg-photo" style="bottom:6%;left:6%">
-    <img src="bg4.jpg" class="bg-photo" style="bottom:6%;right:6%">
+  <!-- PHOTOS (SAFE GRID) -->
+  <div class="photo-grid">
+    <img src="bg1.jpg">
+    <img src="bg2.jpg">
+    <img src="bg3.jpg">
+    <img src="bg4.jpg">
   </div>
 
   <h1>A Secret Note For You 💌</h1>
@@ -185,8 +184,11 @@ button{
 </section>
 
 <script>
-/* MUSIC */
+/* MOBILE-SAFE MUSIC */
+let musicStarted=false;
 document.body.addEventListener("click",()=>{
+  if(musicStarted) return;
+  musicStarted=true;
   const m=document.getElementById("bgm");
   m.volume=0;
   m.play();
@@ -196,7 +198,7 @@ document.body.addEventListener("click",()=>{
     m.volume=v;
     v+=0.05;
   },200);
-},{once:true});
+});
 
 /* ENVELOPE */
 function openEnvelope(){
@@ -220,7 +222,7 @@ function yes(){
   document.getElementById("final").style.display="block";
 }
 
-/* CONTINUOUS FLOATING HEARTS & BALLOONS */
+/* CONTINUOUS HEARTS & BALLOONS */
 setInterval(()=>{
   let e=document.createElement("div");
   e.className="fall";
